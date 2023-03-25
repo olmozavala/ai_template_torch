@@ -20,9 +20,11 @@ device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print("Using device: ", device)
 
 #%% ----- DataLoader --------
-# ssh_folder = "/data/GOFFISH/AVISO/"
-ssh_folder = "/data/LOCAL_GOFFISH/AVISO/"
-eddies_folder = "/home/olmozavala/Dropbox/MyProjects/EOAS/COAPS/GOFFISH_UGOS3/ProgramsRepo/data/Geodesic/processed/"
+# ssh_folder = "/data/LOCAL_GOFFISH/AVISO/"
+# eddies_folder = "/home/olmozavala/Dropbox/MyProjects/EOAS/COAPS/GOFFISH_UGOS3/ProgramsRepo/data/Geodesic/processed/"
+ssh_folder = "/Net/work/ozavala/DATA/GOFFISH/AVISO"
+eddies_folder = "/Net/work/ozavala/DATA/GOFFISH/EddyDetection/PreprocContours/"
+
 bbox = [18.125, 32.125, 260.125 - 360, 285.125 - 360]  # These bbox needs to be the same used in preprocessing
 output_resolution = 0.1
 dataset = EddyDataset(ssh_folder, eddies_folder, bbox, output_resolution)
@@ -34,7 +36,7 @@ print("Total number of samples: ", len(dataset))
 
 # Create DataLoaders for training and validation
 workers = 10
-train_loader = DataLoader(dataset, batch_size=40, shuffle=True, num_workers=workers)
+train_loader = DataLoader(dataset, batch_size=80, shuffle=True, num_workers=workers)
 # val_loader = DataLoader(val_dataset, batch_size=4, shuffle=True, num_workers=workers)
 val_loader = train_loader
 print("Done loading data!")

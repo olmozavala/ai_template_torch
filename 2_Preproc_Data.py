@@ -17,7 +17,8 @@ from proc_utils.geometries import intersect_polygon_grid
 from proj_io.contours import read_contours_mask_and_polygons
 
 # SSH file used as reference for the size of the grid
-ssh_file = "/data/GOFFISH/AVISO/2010-01.nc"
+# ssh_file = "/data/GOFFISH/AVISO/2010-01.nc"
+ssh_file = "/Net/work/ozavala/DATA/GOFFISH/AVISO/2010-01.nc"  # Just a test file to read the grid
 day_of_month = 5
 bbox = [18.125, 32.125, 260.125 - 360, 285.125 - 360]  # These bbox needs to be the same used by DataReader
 output_resolution = 0.1  # Needs to be the same used in DataReader
@@ -36,8 +37,10 @@ viz_obj = EOAImageVisualizer(lats=lats, lons=lons)
 
 def preproc_data(proc_id):
     '''It generates a mask of the contours and saves it to a file'''
-    input_folder = "/home/olmozavala/Dropbox/MyProjects/EOAS/COAPS/GOFFISH_UGOS3/ProgramsRepo/data/Geodesic/raw"
-    output_folder = "/home/olmozavala/Dropbox/MyProjects/EOAS/COAPS/GOFFISH_UGOS3/ProgramsRepo/data/Geodesic/processed"
+    # input_folder = "/home/olmozavala/Dropbox/MyProjects/EOAS/COAPS/GOFFISH_UGOS3/ProgramsRepo/data/Geodesic/raw"
+    # output_folder = "/home/olmozavala/Dropbox/MyProjects/EOAS/COAPS/GOFFISH_UGOS3/ProgramsRepo/data/Geodesic/processed"
+    input_folder = "/nexsan/people/lhiron/UGOS/Lag_coh_eddies/eddy_contours/altimetry_2010_14day_coh/"
+    output_folder = "/Net/work/ozavala/DATA/GOFFISH/EddyDetection/PreprocContours/"
     create_folder(output_folder)
     all_files = os.listdir(input_folder)
     all_files.sort()
@@ -61,6 +64,6 @@ def preproc_data(proc_id):
 
 if __name__ == '__main__':
     # ----------- Parallel -------
-    NUM_PROC = 10
+    NUM_PROC = 20
     p = Pool(NUM_PROC)
     p.map(preproc_data, range(NUM_PROC))
