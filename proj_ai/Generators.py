@@ -10,17 +10,18 @@ from viz_utils.eoa_viz import EOAImageVisualizer
 from proj_io.contours import read_contours_polygons
 import numpy as np
 
+
 ## ------- Custom dataset ------
 class EddyDataset(Dataset):
     def __init__(self, ssh_folder, eddies_folder, bbox=[18.125, 32.125, -100.125, -74.875], output_resolution=0.125,
-                 train=True, transform=None):
+                 transform=None):
         print("Initializing EddyDataset")
         print("SSH folder: ", ssh_folder)
         print("Eddies folder: ", eddies_folder)
         self.ssh_folder = ssh_folder
         self.eddies_folder = eddies_folder
-        self.eddies_files = os.listdir(eddies_folder)
-        # HERE WE NEED TO SORT THE FILES AND THEN SEPARATE TRAIN and VALIDATION
+        self.eddies_files = np.array(os.listdir(eddies_folder))
+
         self.total_days = len(self.eddies_files)
         self.transform = transform
         self.bbox = bbox
@@ -90,3 +91,5 @@ if __name__ == "__main__":
         print(batch[0].shape)
         ssh, eddies = batch
         x = 1
+#%%
+
