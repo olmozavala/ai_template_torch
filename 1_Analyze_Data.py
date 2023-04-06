@@ -18,7 +18,7 @@ print("Reading data...")
 date = datetime.strptime('2010-01-14','%Y-%m-%d')
 day_year = get_day_of_year_from_month_and_day(date.month, date.day, date.year)
 day_month = date.day
-ssh_folder = "/Net/work/ozavala/DATA/GOFFISH/AVISO"
+ssh_folder = "/unity/f1/ozavala/DATA/GOFFISH/AVISO"
 contours_folder = "/nexsan/people/lhiron/UGOS/Lag_coh_eddies/eddy_contours/altimetry_2010_14day_coh/"
 bbox = [18.125, 32.125, 260.125 - 360, 285.125 - 360]  # These bbox needs to be the same used by DataReader
 

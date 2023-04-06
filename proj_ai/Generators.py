@@ -91,5 +91,3 @@ if __name__ == "__main__":
         print(batch[0].shape)
         ssh, eddies = batch
         x = 1
-#%%
-

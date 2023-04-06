@@ -15,6 +15,7 @@ from proj_ai.dice_score import dice_coeff, dice_loss
 from models.ModelsEnum import Models
 from models.ModelSelector import select_model
 import cmocean.cm as cm
+from os.path import join
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 # device = "cpu"
@@ -23,9 +24,11 @@ print("Using device: ", device)
 #%% ----- DataLoader --------
 # ssh_folder = "/data/LOCAL_GOFFISH/AVISO/"
 # eddies_folder = "/home/olmozavala/Dropbox/MyProjects/EOAS/COAPS/GOFFISH_UGOS3/ProgramsRepo/data/Geodesic/processed/"
-ssh_folder = "/Net/work/ozavala/DATA/GOFFISH/AVISO"
-eddies_folder = "/Net/work/ozavala/DATA/GOFFISH/EddyDetection/PreprocContours/"
-output_folder = "/Net/work/ozavala/CODE/EddyDetection/"
+data_folder = "/unity/f1/ozavala/DATA/GOFFISH/"
+ssh_folder = join(data_folder, "/GOFFISH/AVISO")
+eddies_folder = join(data_folder,"/GOFFISH/EddyDetection/PreprocContours/")
+eddies_folder = join(data_folder, "/EddyDetection/PreprocContours/")
+output_folder = join(data_folder, "/unity/f1/ozavala/CODE/EddyDetection")
 
 bbox = [18.125, 32.125, 260.125 - 360, 285.125 - 360]  # These bbox needs to be the same used in preprocessing
 output_resolution = 0.1
